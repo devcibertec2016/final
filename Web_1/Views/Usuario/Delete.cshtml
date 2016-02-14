@@ -1,0 +1,92 @@
+﻿@model Datos.tTR_Usuarios
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h5>Si elimina el registro, ya no podrá recuperarlo</h5>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Usuario
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vNombreUsuario)
+        </dd>
+
+        <dt>
+            Contraseña
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vPassword)
+        </dd>
+
+        <dt>
+            Nombre
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vNombre)
+        </dd>
+
+        <dt>
+            Apellidos
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vApellidos)
+        </dd>
+
+        <dt>
+            Estado
+        </dt>
+
+        <dd>
+            @if (@Model.iEstado == 1)
+            {
+            <label>Activo</label>
+            }
+            else
+            {
+            <label>Inactivo</label>
+            }
+        </dd>
+
+        <dt>
+            Rol
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tTR_Roles.vNombreRol)
+        </dd>
+
+        <dt>
+            Imagen
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model => model.sRutaImagen)" alt="image" />
+        </dd>
+
+    </dl>
+
+   @using (Html.BeginForm(null, null, null, FormMethod.Post, new { id = "EliminarUsuario" }))
+{
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input id="btnEliminar" type="button" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+
+
+@Scripts.Render("~/scrp/usuarios")

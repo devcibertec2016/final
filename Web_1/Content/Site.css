@@ -1,0 +1,227 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+/* Modal */
+
+
+
+.css-modal-title-text {
+    font-size: 14px;
+    font-family: arial;
+    font-style: normal;
+}
+
+.css-modal-header {
+    background-color: #ABABAB;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: #fff;
+    height: 30px;
+    padding-top: 5px;
+}
+
+.css-modal-border-redondo {
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.css-modal-timer {
+    width: 400px;
+}
+
+.css-modal-footer {
+    padding: 5px;
+    border-top: 3px solid #ABABAB;
+}
+
+.css-modal-timer-img {
+    margin-right: 10px;
+    margin-left: 5px;
+    margin-top: -5px;
+}
+
+.css-modal-timer-text {
+    font-style: normal;
+    font-size: 11px;
+    padding-top: 5px;
+    padding-right: 5px;
+}
+
+.css-modal-form {
+    border-radius: 15px;
+    border-top: 4px solid #ABABAB;
+}
+
+.css-modal-form-header {
+    padding: 10px;
+    min-height: 50px;
+    background-color: #ABABAB;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+    .css-modal-form-header .css-modal-title {
+        color: #FC7E3E;
+        font-size: 15px;
+        position: absolute;
+        font-weight: 600;
+    }
+
+.css-modal-title-pasos {
+    position: relative;
+    top: -30px;
+}
+
+.css-modal-pasos-ul {
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 600;
+    font-style: normal;
+    padding-left: 0px;
+}
+
+    .css-modal-pasos-ul li {
+        float: left;
+        height: 28px;
+    }
+
+        .css-modal-pasos-ul li:last-child {
+            margin-right: 5px;
+        }
+
+        .css-modal-pasos-ul li a {
+            text-decoration: none;
+            background-color: #F9F9F9;
+            position: relative;
+            display: block;
+            float: left;
+            font-style: normal;
+            padding-right: 40px;
+        }
+
+        .css-modal-pasos-ul li a i {
+            color: #ABABAB;
+            height: 22px;
+            width: 22px;
+            text-decoration: none;
+            background-color: #F9F9F9;
+            position: relative;
+            display: block;
+            float: left;
+            border: 2px solid #ABABAB;
+            border-radius: 25px;
+            padding-left: 5px;
+            font-style: normal;
+        }
+
+            .css-modal-pasos-ul li i:before {
+                content: " ";
+                display: block;
+                width: 42px;
+                height: 2px;
+                background-color: #ABABAB;
+                position: absolute;
+                top: 50%;
+                margin-top: -2px;
+                right: 100%;
+                z-index: 3;
+            }
+
+        .css-modal-pasos-ul li:first-child i:before {
+            width: 0;
+            height: 0px;
+        }
+
+        .css-modal-pasos-ul > .active > a > i{
+            border: 2px solid #FC7E3E;
+            color: #EB7020;
+        }
+
+        .css-modal-pasos-ul > .active > a > i:before{
+            background-color: #FC7E3E;
+        }
+
+        .css-modal-pasos-ul > .complete > a > i{
+            background-color: #FC7E3E;
+            color: #fff;
+            border: 2px solid #FC7E3E;
+        }
+
+        .css-modal-pasos-ul > .complete > a > i:before{
+            background-color: #FC7E3E;
+        }
+
+        
+.css-modal-form-header .css-modal-sub-title {
+}
+
+.css-modal-form-footer {
+    padding-top: 5px;
+    padding-right: 15px;
+    border-top: 2px solid #ABABAB;
+}
+
+/*
+    LOGIN
+    */
+
+.Login {
+    width:800px;
+    height:100px;
+    float:inherit;
+    text-align : center;
+    padding:30px;
+    margin:30px;
+}
+
+    .Login h1,h5 {
+        text-transform:uppercase;
+        text-decoration:dotted;
+        margin:20px;
+        color:#808080;
+        font-family:Tahoma,'Comic Sans MS';
+    }
+    .login button {
+        margin:20px;
+    }

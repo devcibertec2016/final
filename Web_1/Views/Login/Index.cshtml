@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@using (Html.BeginForm("ValidaLogeo", "Login", null, FormMethod.Post, new { id = "Logearse" }))
+{
+
+    Datos.tTR_Usuarios objdatos = new Datos.tTR_Usuarios();
+    objdatos = (Datos.tTR_Usuarios)Session["LogeoUsuario"];
+    if (objdatos == null)
+    {
+        <div class="Login" style="text-align:center; margin:100px;">
+            <h1 class="active">Validación de Credenciales</h1>
+
+            <h5 class="active">Usuario</h5>
+            @Html.TextBox("txtUsuario", null, new { @class = "input-lg text-info" })
+            <!--<input id="" type="text" class="input-lg text-info" />-->
+            <h5 class="active">Password</h5>
+            @*<input id="txtPassword" type="password" class="input-lg text-danger" />*@
+            @Html.TextBox("txtPassword", null, new { @class = "input-lg text-danger", @type = "password" })
+            <br />
+            <button id="btnAcceder" type="submit" class="btn btn-lg btn-success">Acceder</button>
+            <button id="btnCancelar" type="button" class="btn btn-lg btn-danger">Cancelar</button>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <span id="" class="col-lg-push-10" style="margin:200px;">@ViewBag.ValidaLogeo</span>
+    }
+    else
+    {
+        Response.Redirect("~/Home/Index");
+    }
+
+}
+

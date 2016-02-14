@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="938857e9ec544301820441617e82d383" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_Trabajo_1Model.tTR_Categoria" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_Trabajo_1Model.tTR_Producto" Width="1.875" PointX="3" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="DB_Trabajo_1Model.FK_tTR_Producto_ToTable" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DB_Trabajo_1Model.tTR_Proveedor" Width="1.5" PointX="0.75" PointY="7.375" />
+        <AssociationConnector Association="DB_Trabajo_1Model.FK_tTR_Producto_Proveedor" />
+        <EntityTypeShape EntityType="DB_Trabajo_1Model.tTR_Roles" Width="1.5" PointX="5.375" PointY="1.25" />
+        <EntityTypeShape EntityType="DB_Trabajo_1Model.tTR_Usuarios" Width="1.5" PointX="7.625" PointY="0.875" />
+        <AssociationConnector Association="DB_Trabajo_1Model.FK_Rol_User" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

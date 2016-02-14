@@ -1,0 +1,39 @@
+﻿@model Datos.tTR_Roles
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles Rol - @Html.DisplayFor(model => model.vNombreRol)</h2>
+
+<div>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nombre Rol :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vNombreRol)
+        </dd>
+
+        <dt>
+            Estado
+        </dt>
+
+        <dd>
+            @if (@Model.iEstado == 1)
+            {
+                <label>Activo</label>
+            }
+            else
+            {
+                <label>Inactivo</label>
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.iIdUsuario }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

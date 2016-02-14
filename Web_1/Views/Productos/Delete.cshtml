@@ -1,0 +1,109 @@
+﻿@model Datos.tTR_Producto
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<h2>Eliminar producto</h2>
+
+<h5>Si elimina el registro, ya no podrá recuperarlo</h5>
+<div>
+    <h4>tTR_Producto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nombre Producto
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vNombreProducto)
+        </dd>
+
+        <dt>
+            Descripcion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vDescripcionProducto)
+        </dd>
+
+        <dt>
+            Precio Compra
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nPrecioCompra)
+        </dd>
+
+        <dt>
+            Precio Venta
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nPrecioVenta)
+        </dd>
+
+        <dt>
+            Stock Actual
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iStockActual)
+        </dd>
+
+        <dt>
+            Stock Minimo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iStockMinimo)
+        </dd>
+
+        <dt>
+            Estado
+        </dt>
+
+        <dd>
+            @if (@Model.iEstado == 1)
+            {
+                <label>Activo</label>
+            }
+            else
+            {
+                <label>Inactivo</label>
+            }
+        </dd>
+
+        <dt>
+            Nombre Categoría
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tTR_Categoria.vNombreCategoria)
+        </dd>
+
+
+        <dt>
+            Nombre Proveedor
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tTR_Proveedor.vNombreProveedor)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm(null, null, null, FormMethod.Post, new { id = "EliminarProducto" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input id="btnEliminar" type="button" value="Eliminar Registro" class="btn btn-default" /> |
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>
+@Scripts.Render("~/bundles/jquery")
+
+
+@Scripts.Render("~/scrp/productos")

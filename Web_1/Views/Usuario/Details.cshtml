@@ -1,0 +1,83 @@
+﻿@model Datos.tTR_Usuarios
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Usuario
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vNombreUsuario)
+        </dd>
+
+        <dt>
+            Contraseña
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vPassword)
+        </dd>
+
+        <dt>
+            Nombre
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vNombre)
+        </dd>
+
+        <dt>
+            Apellidos
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vApellidos)
+        </dd>
+
+        <dt>
+            Estado
+        </dt>
+
+        <dd>
+            @if (@Model.iEstado == 1)
+            {
+                <label>Activo</label>
+            }
+            else
+            {
+                <label>Inactivo</label>
+            }
+        </dd>
+
+        <dt>
+            Rol
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tTR_Roles.vNombreRol)
+        </dd>
+
+        <dt>
+            Imagen
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model => model.sRutaImagen)" alt="image" />
+            @*<div>
+                <img id="imgPreview" width="80" height="80" />
+            </div>
+            <input type="file" name="files" id="files" multiple="multiple" />*@
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.vNombreUsuario }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

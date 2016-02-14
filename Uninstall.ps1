@@ -1,0 +1,1 @@
+choco uninstall WebProyecto  -f -y -packageParameters '"/AppName:Default Web Site\WebProyecto"'

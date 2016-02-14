@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Datos.tTR_Proveedor>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Proveedores </h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Proveedor", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+          Proveedor
+        </th>
+        <th>
+            Ruc
+        </th>
+        <th>
+            Dirección
+        </th>
+        <th>
+            Telefono 1
+        </th>
+        <th>
+            Telefono 2
+        </th>
+        <th>
+           Estado
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.vNombreProveedor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vRuc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vDireccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vTelefono1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.vTelefono2)
+        </td>
+        <td>
+            @if (item.iEstado == 1)
+            { 
+                <label>Activo</label>
+            }
+            else
+            { 
+                <label>Inactivo</label>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.iIdProveedor }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.iIdProveedor }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.iIdProveedor })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Datos.tTR_Usuarios>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Usuarios</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Usuario", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Usuario
+        </th>
+        <th>
+            Password
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Apellidos
+        </th>
+        <th>
+            Estado
+        </th>
+        <th>
+            Rol
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.vNombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vPassword)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vApellidos)
+            </td>
+            <td>
+                @if (item.iEstado == 1)
+                {
+                    <label>Activo</label>
+                }
+                else
+                {
+                    <label>Inactivo</label>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tTR_Roles.vNombreRol)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.vNombreUsuario }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.vNombreUsuario }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.vNombreUsuario })
+            </td>
+        </tr>
+    }
+
+</table>

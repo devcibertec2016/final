@@ -1,0 +1,72 @@
+﻿@model Datos.tTR_Proveedor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Proveedor
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vNombreProveedor)
+        </dd>
+
+        <dt>
+            RUC:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vRuc)
+        </dd>
+
+        <dt>
+            Dirección
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vDireccion)
+        </dd>
+
+        <dt>
+            Telefono 1 :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vTelefono1)
+        </dd>
+
+        <dt>
+            Telefono 2 :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vTelefono2)
+        </dd>
+
+        <dt>
+            Estado :
+        </dt>
+
+        <dd>
+            @if (@Model.iEstado == 1)
+            {
+                <label>Activo</label>
+            }
+            else
+            {
+                <label>Inactivo</label>
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.iIdProveedor }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

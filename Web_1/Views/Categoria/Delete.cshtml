@@ -1,0 +1,61 @@
+﻿@model Datos.tTR_Categoria
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Eliminar Categoria</h2>
+
+<h5>Si elimina el registro, ya no podrá recuperarlo</h5>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Nombre Categoria
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vNombreCategoria)
+        </dd>
+
+        <dt>
+            Estado
+        </dt>
+
+        <dd>
+            @if (@Model.iEstado == 1)
+            {
+                <label>Activo</label>
+            }
+            else
+            {
+                <label>Inactivo</label>
+            }
+        </dd>
+
+    </dl>
+    @if (Model.iEstadoEliminar == 0)
+    {
+       <label>Usted no puede eliminar el registro ya que se encuentra asociado con un(os) producto(s)</label>
+    }
+
+    @using (Html.BeginForm(null, null, null, FormMethod.Post, new { id = "EliminarCategoria" }))
+    { 
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @if(Model.iEstadoEliminar == 0)
+            { 
+            <input id="" type="button" value="Eliminar" class="btn btn-default" disabled>
+            }
+            else
+            {
+                <input id="btnEliminar" type="button" value="Eliminar" class="btn btn-default">
+            }
+            @Html.ActionLink("Regresar", "Index")
+        </div>
+    }
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/scrp/categorias")

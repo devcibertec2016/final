@@ -1,0 +1,97 @@
+﻿@model Datos.tTR_Producto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles - @Html.DisplayFor(model => model.vNombreProducto) </h2>
+
+<div>
+   
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Nombre Producto
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vNombreProducto)
+        </dd>
+
+        <dt>
+            Descripcion
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vDescripcionProducto)
+        </dd>
+
+        <dt>
+            Precio Compra
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nPrecioCompra)
+        </dd>
+
+        <dt>
+            Precio Venta
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nPrecioVenta)
+        </dd>
+
+        <dt>
+            Stock Actual
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iStockActual)
+        </dd>
+
+        <dt>
+            Stock Minimo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.iStockMinimo)
+        </dd>
+
+        <dt>
+            Estado
+        </dt>
+
+        <dd>
+            @if (@Model.iEstado == 1)
+            {
+                <label>Activo</label>
+            }
+            else
+            {
+                <label>Inactivo</label>
+            }
+        </dd>
+
+        <dt>
+            Nombre Categoría
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tTR_Categoria.vNombreCategoria)
+        </dd>
+
+        <dt>
+            Nombre Proveedor
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tTR_Proveedor.vNombreProveedor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.iIdProducto }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

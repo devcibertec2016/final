@@ -1,0 +1,88 @@
+﻿@model Datos.tTR_Proveedor
+
+@{
+    ViewBag.Title = "Crear Proveedor";
+}
+
+<h2>Crear Proveedor</h2>
+
+
+@using (Html.BeginForm(null, null, null, FormMethod.Post, new { id = "RegistrarProveedor" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        
+        <div class="form-group">
+            <label class="control-label col-md-2">Proveedor</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.vNombreProveedor)
+                @*@Html.ValidationMessageFor(model => model.vNombreProveedor)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Ruc</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.vRuc)
+                @*@Html.ValidationMessageFor(model => model.vRuc)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Dirección</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.vDireccion)
+                @*@Html.ValidationMessageFor(model => model.vDireccion)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Telefono 1</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.vTelefono1)
+                @*@Html.ValidationMessageFor(model => model.vTelefono1)*@
+            </div>
+        </div>
+
+        <div class="form-group">    
+            <label class="control-label col-md-2">Telefono 2</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.vTelefono2)
+                @*@Html.ValidationMessageFor(model => model.vTelefono2)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Estado</label>
+            <div class="col-md-10">
+                <label>Activo</label>
+                @Html.RadioButtonFor(model => model.iEstado, "1", new { @id = "rbtActivo" , Checked=true})
+                <label>Inactivo</label>
+                @Html.RadioButtonFor(model => model.iEstado, "0", new { @id = "rbtInactivo" })
+                @*@Html.ValidationMessageFor(model => model.iEstado)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="btnRegistrar" type="button" value="Registrar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>
+@Scripts.Render("~/bundles/jquery")
+
+
+@Scripts.Render("~/scrp/proveedor")
+
+
+
+

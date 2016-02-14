@@ -1,0 +1,40 @@
+﻿@model Datos.tTR_Categoria
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Nombre Categoria
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vNombreCategoria)
+        </dd>
+
+        <dt>
+           Estado
+        </dt>
+
+        <dd>
+            @if (@Model.iEstado == 1)
+            {
+                <label>Activo</label>
+            }
+            else
+            {
+                <label>Inactivo</label>
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.iIdCategoria }) |
+    @Html.ActionLink("Regresar", "Index")
+</p>

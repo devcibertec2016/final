@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_Trabajo_1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tTR_Categoria">
+          <Key>
+            <PropertyRef Name="iIdCategoria" />
+          </Key>
+          <Property Name="iIdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vNombreCategoria" Type="varchar" MaxLength="50" />
+          <Property Name="iEstado" Type="int" />
+        </EntityType>
+        <EntityType Name="tTR_Producto">
+          <Key>
+            <PropertyRef Name="iIdProducto" />
+          </Key>
+          <Property Name="iIdProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iIdCategoria" Type="int" />
+          <Property Name="iIdProveedor" Type="int" />
+          <Property Name="vNombreProducto" Type="varchar" MaxLength="100" />
+          <Property Name="vDescripcionProducto" Type="varchar" MaxLength="250" />
+          <Property Name="nPrecioCompra" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="nPrecioVenta" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="iStockActual" Type="int" />
+          <Property Name="iStockMinimo" Type="int" />
+          <Property Name="iEstado" Type="int" />
+        </EntityType>
+        <EntityType Name="tTR_Proveedor">
+          <Key>
+            <PropertyRef Name="iIdProveedor" />
+          </Key>
+          <Property Name="iIdProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vNombreProveedor" Type="varchar" MaxLength="25" />
+          <Property Name="vRuc" Type="varchar" MaxLength="11" />
+          <Property Name="vDireccion" Type="varchar" MaxLength="250" />
+          <Property Name="vTelefono1" Type="varchar" MaxLength="9" />
+          <Property Name="vTelefono2" Type="varchar" MaxLength="9" />
+          <Property Name="iEstado" Type="int" />
+        </EntityType>
+        <EntityType Name="tTR_Roles">
+          <Key>
+            <PropertyRef Name="iIdUsuario" />
+          </Key>
+          <Property Name="iIdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vNombreRol" Type="varchar" MaxLength="100" />
+          <Property Name="iEstado" Type="int" />
+        </EntityType>
+        <EntityType Name="tTR_Usuarios">
+          <Key>
+            <PropertyRef Name="vNombreUsuario" />
+          </Key>
+          <Property Name="iIdUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iIdRol" Type="int" />
+          <Property Name="vNombreUsuario" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="vPassword" Type="varchar" MaxLength="25" />
+          <Property Name="vNombre" Type="varchar" MaxLength="100" />
+          <Property Name="vApellidos" Type="varchar" MaxLength="250" />
+          <Property Name="iEstado" Type="int" />
+          <Property Name="sRutaImagen" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK_Rol_User">
+          <End Role="tTR_Roles" Type="Self.tTR_Roles" Multiplicity="0..1" />
+          <End Role="tTR_Usuarios" Type="Self.tTR_Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tTR_Roles">
+              <PropertyRef Name="iIdUsuario" />
+            </Principal>
+            <Dependent Role="tTR_Usuarios">
+              <PropertyRef Name="iIdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tTR_Producto_Proveedor">
+          <End Role="tTR_Proveedor" Type="Self.tTR_Proveedor" Multiplicity="0..1" />
+          <End Role="tTR_Producto" Type="Self.tTR_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tTR_Proveedor">
+              <PropertyRef Name="iIdProveedor" />
+            </Principal>
+            <Dependent Role="tTR_Producto">
+              <PropertyRef Name="iIdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tTR_Producto_ToTable">
+          <End Role="tTR_Categoria" Type="Self.tTR_Categoria" Multiplicity="0..1" />
+          <End Role="tTR_Producto" Type="Self.tTR_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tTR_Categoria">
+              <PropertyRef Name="iIdCategoria" />
+            </Principal>
+            <Dependent Role="tTR_Producto">
+              <PropertyRef Name="iIdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_Trabajo_1ModelStoreContainer">
+          <EntitySet Name="tTR_Categoria" EntityType="Self.tTR_Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tTR_Producto" EntityType="Self.tTR_Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tTR_Proveedor" EntityType="Self.tTR_Proveedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tTR_Roles" EntityType="Self.tTR_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tTR_Usuarios" EntityType="Self.tTR_Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Rol_User" Association="Self.FK_Rol_User">
+            <End Role="tTR_Roles" EntitySet="tTR_Roles" />
+            <End Role="tTR_Usuarios" EntitySet="tTR_Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tTR_Producto_Proveedor" Association="Self.FK_tTR_Producto_Proveedor">
+            <End Role="tTR_Proveedor" EntitySet="tTR_Proveedor" />
+            <End Role="tTR_Producto" EntitySet="tTR_Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tTR_Producto_ToTable" Association="Self.FK_tTR_Producto_ToTable">
+            <End Role="tTR_Categoria" EntitySet="tTR_Categoria" />
+            <End Role="tTR_Producto" EntitySet="tTR_Producto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_Trabajo_1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tTR_Categoria">
+          <Key>
+            <PropertyRef Name="iIdCategoria" />
+          </Key>
+          <Property Name="iIdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vNombreCategoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="iEstado" Type="Int32" />
+          <NavigationProperty Name="tTR_Producto" Relationship="Self.FK_tTR_Producto_ToTable" FromRole="tTR_Categoria" ToRole="tTR_Producto" />
+        </EntityType>
+        <EntityType Name="tTR_Producto">
+          <Key>
+            <PropertyRef Name="iIdProducto" />
+          </Key>
+          <Property Name="iIdProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iIdCategoria" Type="Int32" />
+          <Property Name="vNombreProducto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="vDescripcionProducto" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="nPrecioCompra" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="nPrecioVenta" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="iStockActual" Type="Int32" />
+          <Property Name="iStockMinimo" Type="Int32" />
+          <Property Name="iEstado" Type="Int32" />
+          <NavigationProperty Name="tTR_Categoria" Relationship="Self.FK_tTR_Producto_ToTable" FromRole="tTR_Producto" ToRole="tTR_Categoria" />
+          <Property Name="iIdProveedor" Type="Int32" />
+          <NavigationProperty Name="tTR_Proveedor" Relationship="DB_Trabajo_1Model.FK_tTR_Producto_Proveedor" FromRole="tTR_Producto" ToRole="tTR_Proveedor" />
+        </EntityType>
+        <Association Name="FK_tTR_Producto_ToTable">
+          <End Role="tTR_Categoria" Type="Self.tTR_Categoria" Multiplicity="0..1" />
+          <End Role="tTR_Producto" Type="Self.tTR_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tTR_Categoria">
+              <PropertyRef Name="iIdCategoria" />
+            </Principal>
+            <Dependent Role="tTR_Producto">
+              <PropertyRef Name="iIdCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DB_Trabajo_1Entities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tTR_Categoria" EntityType="Self.tTR_Categoria" />
+          <EntitySet Name="tTR_Producto" EntityType="Self.tTR_Producto" />
+          <AssociationSet Name="FK_tTR_Producto_ToTable" Association="Self.FK_tTR_Producto_ToTable">
+            <End Role="tTR_Categoria" EntitySet="tTR_Categoria" />
+            <End Role="tTR_Producto" EntitySet="tTR_Producto" />
+          </AssociationSet>
+          <EntitySet Name="tTR_Proveedor" EntityType="DB_Trabajo_1Model.tTR_Proveedor" />
+          <AssociationSet Name="FK_tTR_Producto_Proveedor" Association="DB_Trabajo_1Model.FK_tTR_Producto_Proveedor">
+            <End Role="tTR_Proveedor" EntitySet="tTR_Proveedor" />
+            <End Role="tTR_Producto" EntitySet="tTR_Producto" />
+          </AssociationSet>
+          <EntitySet Name="tTR_Roles" EntityType="DB_Trabajo_1Model.tTR_Roles" />
+          <EntitySet Name="tTR_Usuarios" EntityType="DB_Trabajo_1Model.tTR_Usuarios" />
+          <AssociationSet Name="FK_Rol_User" Association="DB_Trabajo_1Model.FK_Rol_User">
+            <End Role="tTR_Roles" EntitySet="tTR_Roles" />
+            <End Role="tTR_Usuarios" EntitySet="tTR_Usuarios" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tTR_Proveedor">
+          <Key>
+            <PropertyRef Name="iIdProveedor" />
+          </Key>
+          <Property Name="iIdProveedor" Type="Int32" Nullable="false" />
+          <Property Name="vNombreProveedor" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="vRuc" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="vDireccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="vTelefono1" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="vTelefono2" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="iEstado" Type="Int32" />
+          <NavigationProperty Name="tTR_Producto" Relationship="DB_Trabajo_1Model.FK_tTR_Producto_Proveedor" FromRole="tTR_Proveedor" ToRole="tTR_Producto" />
+        </EntityType>
+        <Association Name="FK_tTR_Producto_Proveedor">
+          <End Type="DB_Trabajo_1Model.tTR_Proveedor" Role="tTR_Proveedor" Multiplicity="0..1" />
+          <End Type="DB_Trabajo_1Model.tTR_Producto" Role="tTR_Producto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tTR_Proveedor">
+              <PropertyRef Name="iIdProveedor" />
+            </Principal>
+            <Dependent Role="tTR_Producto">
+              <PropertyRef Name="iIdProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tTR_Roles">
+          <Key>
+            <PropertyRef Name="iIdUsuario" />
+          </Key>
+          <Property Name="iIdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vNombreRol" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="iEstado" Type="Int32" />
+          <NavigationProperty Name="tTR_Usuarios" Relationship="DB_Trabajo_1Model.FK_Rol_User" FromRole="tTR_Roles" ToRole="tTR_Usuarios" />
+        </EntityType>
+        <EntityType Name="tTR_Usuarios">
+          <Key>
+            <PropertyRef Name="vNombreUsuario" />
+          </Key>
+          <Property Name="iIdUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iIdRol" Type="Int32" />
+          <Property Name="vNombreUsuario" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="vPassword" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="vNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="vApellidos" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="iEstado" Type="Int32" />
+          <NavigationProperty Name="tTR_Roles" Relationship="DB_Trabajo_1Model.FK_Rol_User" FromRole="tTR_Usuarios" ToRole="tTR_Roles" />
+          <Property Name="sRutaImagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Rol_User">
+          <End Type="DB_Trabajo_1Model.tTR_Roles" Role="tTR_Roles" Multiplicity="0..1" />
+          <End Type="DB_Trabajo_1Model.tTR_Usuarios" Role="tTR_Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tTR_Roles">
+              <PropertyRef Name="iIdUsuario" />
+            </Principal>
+            <Dependent Role="tTR_Usuarios">
+              <PropertyRef Name="iIdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_Trabajo_1ModelStoreContainer" CdmEntityContainer="DB_Trabajo_1Entities3">
+          <EntitySetMapping Name="tTR_Categoria">
+            <EntityTypeMapping TypeName="DB_Trabajo_1Model.tTR_Categoria">
+              <MappingFragment StoreEntitySet="tTR_Categoria">
+                <ScalarProperty Name="iIdCategoria" ColumnName="iIdCategoria" />
+                <ScalarProperty Name="vNombreCategoria" ColumnName="vNombreCategoria" />
+                <ScalarProperty Name="iEstado" ColumnName="iEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tTR_Producto">
+            <EntityTypeMapping TypeName="DB_Trabajo_1Model.tTR_Producto">
+              <MappingFragment StoreEntitySet="tTR_Producto">
+                <ScalarProperty Name="iIdProveedor" ColumnName="iIdProveedor" />
+                <ScalarProperty Name="iIdProducto" ColumnName="iIdProducto" />
+                <ScalarProperty Name="iIdCategoria" ColumnName="iIdCategoria" />
+                <ScalarProperty Name="vNombreProducto" ColumnName="vNombreProducto" />
+                <ScalarProperty Name="vDescripcionProducto" ColumnName="vDescripcionProducto" />
+                <ScalarProperty Name="nPrecioCompra" ColumnName="nPrecioCompra" />
+                <ScalarProperty Name="nPrecioVenta" ColumnName="nPrecioVenta" />
+                <ScalarProperty Name="iStockActual" ColumnName="iStockActual" />
+                <ScalarProperty Name="iStockMinimo" ColumnName="iStockMinimo" />
+                <ScalarProperty Name="iEstado" ColumnName="iEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tTR_Proveedor">
+            <EntityTypeMapping TypeName="DB_Trabajo_1Model.tTR_Proveedor">
+              <MappingFragment StoreEntitySet="tTR_Proveedor">
+                <ScalarProperty Name="iEstado" ColumnName="iEstado" />
+                <ScalarProperty Name="vTelefono2" ColumnName="vTelefono2" />
+                <ScalarProperty Name="vTelefono1" ColumnName="vTelefono1" />
+                <ScalarProperty Name="vDireccion" ColumnName="vDireccion" />
+                <ScalarProperty Name="vRuc" ColumnName="vRuc" />
+                <ScalarProperty Name="vNombreProveedor" ColumnName="vNombreProveedor" />
+                <ScalarProperty Name="iIdProveedor" ColumnName="iIdProveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tTR_Roles">
+            <EntityTypeMapping TypeName="DB_Trabajo_1Model.tTR_Roles">
+              <MappingFragment StoreEntitySet="tTR_Roles">
+                <ScalarProperty Name="iEstado" ColumnName="iEstado" />
+                <ScalarProperty Name="vNombreRol" ColumnName="vNombreRol" />
+                <ScalarProperty Name="iIdUsuario" ColumnName="iIdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tTR_Usuarios">
+            <EntityTypeMapping TypeName="DB_Trabajo_1Model.tTR_Usuarios">
+              <MappingFragment StoreEntitySet="tTR_Usuarios">
+                <ScalarProperty Name="sRutaImagen" ColumnName="sRutaImagen" />
+                <ScalarProperty Name="iEstado" ColumnName="iEstado" />
+                <ScalarProperty Name="vApellidos" ColumnName="vApellidos" />
+                <ScalarProperty Name="vNombre" ColumnName="vNombre" />
+                <ScalarProperty Name="vPassword" ColumnName="vPassword" />
+                <ScalarProperty Name="vNombreUsuario" ColumnName="vNombreUsuario" />
+                <ScalarProperty Name="iIdRol" ColumnName="iIdRol" />
+                <ScalarProperty Name="iIdUsuario" ColumnName="iIdUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

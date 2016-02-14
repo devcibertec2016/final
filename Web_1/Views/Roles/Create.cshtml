@@ -1,0 +1,54 @@
+﻿@model Datos.tTR_Roles
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Crear Roles</h2>
+
+
+@using (Html.BeginForm(null, null, null, FormMethod.Post, new { id = "RegistrarRol" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Nombre de Rol</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.vNombreRol)
+                @*@Html.ValidationMessageFor(model => model.vNombreRol)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Estado</label>
+            <div class="col-md-10">
+                <label>Activo</label>
+                @Html.RadioButtonFor(model => model.iEstado, "1", new { @id = "rbtActivo", Checked = true })
+                <label>Inactivo</label>
+                @Html.RadioButtonFor(model => model.iEstado, "0", new { @id = "rbtInactivo" })
+
+                @*@Html.ValidationMessageFor(model => model.iEstado)*@
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="btnRegistrar" type="button" value="Registrar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+
+
+@Scripts.Render("~/scrp/roles")
+
+

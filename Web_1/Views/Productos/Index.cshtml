@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Datos.tTR_Producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Productos</h2>
+
+<p>
+    @Html.ActionLink("Crear Nuevo Producto", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nombre Producto
+        </th>
+        <th>
+            Descripcion
+        </th>
+        <th>
+            Precio Compra
+        </th>
+        <th>
+            Precio Venta
+        </th>
+        <th>
+            Stock Actual
+        </th>
+        <th>
+            Stock Minimo
+        </th>
+        <th>
+            Estado
+        </th>
+        <th>
+            Categoría
+        </th>
+        <th>
+            Proveedor
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.vNombreProducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.vDescripcionProducto)
+            </td>
+            <td>
+                S/. @Html.DisplayFor(modelItem => item.nPrecioCompra)
+            </td>
+            <td>
+                S/. @Html.DisplayFor(modelItem => item.nPrecioVenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.iStockActual)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.iStockMinimo)
+            </td>
+            <td>
+                @if (item.iEstado == 1)
+                {
+                    <label>Activo</label>
+                }
+                else
+                {
+                    <label>Inactivo</label>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tTR_Categoria.vNombreCategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tTR_Proveedor.vNombreProveedor)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.iIdProducto }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.iIdProducto }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.iIdProducto })
+            </td>
+        </tr>
+    }
+
+</table>

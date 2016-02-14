@@ -1,0 +1,111 @@
+﻿@model Datos.tTR_Producto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Editar Producto</h2>
+
+
+@using (Html.BeginForm(null, null, null, FormMethod.Post, new { id = "EditarProducto" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.iIdProducto)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Categoría</label>
+            <div class="col-md-10">
+                @Html.DropDownList("iIdCategoria", "Seleccione")
+                @*@Html.ValidationMessageFor(model => model.iIdCategoria)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Proveedor</label>
+            <div class="col-md-10">
+                @Html.DropDownList("iIdProveedor", "Seleccione")
+                @*@Html.ValidationMessageFor(model => model.iIdProveedor)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Nombre Producto</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.vNombreProducto)
+                @*@Html.ValidationMessageFor(model => model.vNombreProducto)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Descripcion</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.vDescripcionProducto)
+                @*@Html.ValidationMessageFor(model => model.vDescripcionProducto)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Precio Compra</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nPrecioCompra)
+                @*@Html.ValidationMessageFor(model => model.nPrecioCompra)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Precio Venta</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nPrecioVenta)
+                @*@Html.ValidationMessageFor(model => model.nPrecioVenta)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Stock Actual</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.iStockActual)
+                @*@Html.ValidationMessageFor(model => model.iStockActual)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Stock Minimo</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.iStockMinimo)
+                @*@Html.ValidationMessageFor(model => model.iStockMinimo)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Estado</label>
+            <div class="col-md-10">
+                <label>Activo</label>
+                @Html.RadioButtonFor(model => model.iEstado, "1", new { @id = "rbtActivo", Checked = true })
+                <label>Inactivo</label>
+                @Html.RadioButtonFor(model => model.iEstado, "0", new { @id = "rbtInactivo" })
+
+
+                @*@Html.ValidationMessageFor(model => model.iEstado)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="btnEditar" type="button" value="Guardar Cambios" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+
+
+@Scripts.Render("~/scrp/productos")

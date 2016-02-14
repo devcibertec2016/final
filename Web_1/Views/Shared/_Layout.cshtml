@@ -1,0 +1,133 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Trabajo Final</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<script type="text/javascript">
+    var VG_RUTA_SERVIDOR = "@Url.Content("~")";
+</script>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Cibertec", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="nav-justified" style="text-align:right;">
+                <ul class="nav navbar-nav">
+                    @{
+                        Datos.tTR_Usuarios objdatos = new Datos.tTR_Usuarios();
+                        objdatos = (Datos.tTR_Usuarios)Session["LogeoUsuario"];
+                        
+                        if (objdatos != null)
+                        {
+                            ViewBag.sNombres = (string)Session["Nombres"];
+                            if (objdatos.iIdRol == 1)
+                            {
+                                <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Categorias", "Index", "Categoria")</li>
+                                <li>@Html.ActionLink("Productos", "Index", "Productos")</li>
+                                <li>@Html.ActionLink("Proveedores", "Index", "Proveedor")</li>
+                                <li>@Html.ActionLink("Roles", "Index", "Roles")</li>
+                                <li>@Html.ActionLink("Usuarios", "Index", "Usuario")</li>
+                            }
+                            else if (objdatos.iIdRol == 3)
+                            {
+                                <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                                <li>@Html.ActionLink("Categorias", "Index", "Categoria")</li>
+                                <li>@Html.ActionLink("Productos", "Index", "Productos")</li>
+                                <li>@Html.ActionLink("Proveedores", "Index", "Proveedor")</li>
+
+                            }else
+                            {
+                                <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                            }
+                        }else
+                        {
+                            Response.Redirect("/Login/Index");
+                        }
+
+                    }
+
+                </ul>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="navbar-text">Hola,@ViewBag.sNombres </li> 
+                    <li>  @Html.ActionLink("Cerrar Sesión", "CerrarSession", "Login", null, new { @class = "" }) </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal2" role="dialog">
+        <div class="modal-dialog modal-md css-modal-timer">
+            <div class="modal-content css-modal-border-redondo">
+                <div class="modal-header css-modal-header">
+                    <div class="modal-title css-modal-title-text">
+                        Trabajo Final Cibertec
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="css-modal-timer-text text-justify">
+                                <i class="pull-left fa fa-exclamation-circle fa-4x" style="color: #F56868"></i>
+                                <span id="hddMessage">@TempData["Message"]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer css-modal-footer">
+                    <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" id="modal-close">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Formularios -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-md css-modal-timer">
+            <div class="modal-content css-modal-border-redondo">
+                <div class="modal-header css-modal-heasder">
+                    <div class="modal-title css-modal-title-text">
+                        Trabajo Final Cibertec
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="css-modal-timer-text text-justify">
+                                <i class="pull-left fa fa-exclamation-circle fa-4x" style="color: #F56868"></i>
+                                <span id="hddMessage"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer css-modal-footer">
+                    <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" id="modal-close">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+<footer>
+    <p style="text-align:center;">&copy; @DateTime.Now.Year - @ViewBag.LogHelper </p>
+</footer>
+</html>

@@ -1,0 +1,69 @@
+﻿@model Datos.tTR_Categoria
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Crear Categoria</h2>
+
+<!-- Parameters BeginForm (Escribe una etiqueta form, para la respuesta,cuando se haga submit procesa la solicitud)->
+     HtmlHelper,Accion,Controlador,Valores,Metodo (Post,Get),attributos html
+    -->
+@using (Html.BeginForm(null, null, null, FormMethod.Post, new { id = "RegistrarCategoria" }))
+{
+    @Html.AntiForgeryToken()
+
+    //Datos.tTR_Usuarios objdatos = new Datos.tTR_Usuarios();
+    //objdatos = (Datos.tTR_Usuarios)Session["LogeoUsuario"];
+    //if (objdatos != null)
+    //{
+
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Nombre Categoria</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.vNombreCategoria, new { @maxlength = "10" })
+                @*@Html.ValidationMessageFor(model => model.vNombreCategoria)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Estado</label>
+            <div class="col-md-10">
+                <label>Activo</label>
+                @Html.RadioButtonFor(model => model.iEstado, "1", new { @id = "rbtActivo", Checked = true })
+                <label>Inactivo</label>
+                @Html.RadioButtonFor(model => model.iEstado, "0", new { @id = "rbtInactivo" })
+
+
+                @*@Html.ValidationMessageFor(model => model.iEstado)*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="btnRegistrar2" type="button" value="Registrar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    @*}
+        else
+        {
+            Response.Redirect("~/Home");
+        }*@
+}
+
+
+<div>
+    @Html.ActionLink("Regresar", "Index")
+</div>
+
+
+@Scripts.Render("~/bundles/jquery")
+
+
+@Scripts.Render("~/scrp/categorias")

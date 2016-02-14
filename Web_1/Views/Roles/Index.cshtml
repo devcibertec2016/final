@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Datos.tTR_Roles>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Roles</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo Rol", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+          Nombre Rol
+        </th>
+        <th>
+            Estado
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.vNombreRol)
+        </td>
+        <td>
+            @if (item.iEstado == 1)
+            {
+                <label>Activo</label>
+            }
+            else
+            {
+                <label>Inactivo</label>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.iIdUsuario }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.iIdUsuario }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.iIdUsuario })
+        </td>
+    </tr>
+}
+
+</table>
